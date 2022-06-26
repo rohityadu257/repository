@@ -11,19 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "Student_detail")
-public class student {
-	
-
-	public student() {
-	}
-	
-	public student(String f_name, String l_name, String course, String country) {
-		
-		this.f_name = f_name;
-		this.l_name = l_name;
-		this.course = course;
-		this.country = country;
-	}
+public class Student {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +29,19 @@ public class student {
 	
 	@Column (name = "country")
 	private String country;
+	
+
+	public Student() {
+	}
+	
+	public Student(String f_name, String l_name, String course, String country) {
+		
+		this.f_name = f_name;
+		this.l_name = l_name;
+		this.course = course;
+		this.country = country;
+	}
+	
 	
 	
 	public long getid() {

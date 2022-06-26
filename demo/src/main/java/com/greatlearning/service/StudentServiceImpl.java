@@ -10,56 +10,60 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.greatlearning.model.student;
+import com.greatlearning.model.Student;
+
 
 @Repository
-public class studentServiceImpl implements studentService  {
+public class StudentServiceImpl implements StudentService  {
 
 	private SessionFactory sessionFactory;
 	private Session  session;
 	
 	@Autowired
-	public studentServiceImpl(SessionFactory sessionFactory) {
+	public  StudentServiceImpl(SessionFactory sessionFactory) {
 		super();
 		this.sessionFactory = sessionFactory;
 		try {
 		this.session = this.sessionFactory.getCurrentSession();
 		}
 		catch (HibernateException hexp) {
-			this.sessionFactory.openSession();
+			this.session =this.sessionFactory.openSession();
+			
 		}
 	}
 
 	@Override
-	public List<student> findAll() {
-		List <student> allStudents =  this.session.createQuery("from student").list();
+	public List<Student> findAll() {
+		List <Student> allStudents =  this.session.createQuery("from Student").list();
 		return allStudents;
 	}
 
 	@Override
-	public student findByID(long id) {
-		student student = this.session.get(student.class,id);
+	public Student findByID(long id) {
+		Student student = this.session.get(Student.class,id);
 		return student;
 	}
 	@Transactional
 	@Override
-	public void Save(student student) {
+	public void save(Student student) {
 		Transaction tx = this.session.beginTransaction();
 		this.session.saveOrUpdate(student);
 		tx.commit();
 		
 	}
+	
 	@Transactional
 	@Override
 	public void deleteByID(long id) {
 		Transaction tx = this.session.beginTransaction();
-		student student = this.session.get(student.class,id);
+		Student student = this.session.get(Student.class,id);
 		this.session.delete(student);
 		tx.commit();
 		
+	}
 	}
 
 	
 	
 
-}
+
