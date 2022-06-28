@@ -11,10 +11,10 @@
     	http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<!-- Add Support for component scanning -->
-	<!--<context:component-scan
-		base-package="com.greatlearning" />-->
+	<context:component-scan
+		base-package="com.greatlearning" />
 		
-		<context:component-scan base-package="com.greatlearning"></context:component-scan>
+		<!--<context:component-scan base-package="com.greatlearning"></context:component-scan>-->
 	<bean
 	
 		class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -36,7 +36,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="annotatedClasses">
 			<list>
-				<value>com.greatLearning.model.student</value>
+				<value>com.greatLearning.model.Student</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
