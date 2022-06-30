@@ -11,30 +11,23 @@
 <title>Lab5-StudentForm</title>
 </head>
 <body bgcolor="skyblue">
-	<h3>${mode} Student for College Fest</h3>
+	<h3>${mode} Student for College Festival</h3>
 	 
 	 <form action="save" method="POST">
 	 
-	 <table>
-		<input type="hidden" name="Id" value="${student.id}" />
+	 
+		<input type="hidden" name="Id" value="${student.id}" placeholder = "id">
 		 <br>
-		 <td><label>First name:</label></td>
-		  <input type="text" name="fname" value="${student.fname}"
-			placeholder="First Name">
+		  <input type="text" name="fname" value="${student.fname}"	placeholder="First Name">
 			 <br>
-			 <td><label>Last name:</label></td>
 			  <input type="text" name="lname" value="${student.lname}" placeholder="Last Name">
-		<br>
-		<td><label>Course:</label></td> 
-		<input type="text" name="course" value="${student.course}"
-			placeholder="Course">
+				<br>
+				<input type="text" name="course" value="${student.course}" placeholder="Course">
 			 <br> 
-			 <td><label>Country:</label></td>
-			 <input type="text"
-			name="country" value="${student.country}" placeholder="Country">
-		<br>
+			 <input type="text" name="country" value="${student.country}" placeholder="Country">
+				<br>
 		<button type="submit">Save</button>
-		</table>
+		
 	</form>
 	<a href="list">Back to Students List</a>
 

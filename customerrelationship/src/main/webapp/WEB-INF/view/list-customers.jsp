@@ -8,8 +8,7 @@
   background-color: skyblue;
   border: red;
   color: red;
-  text-weight:bold;
-  padding: 10px 500px;
+  padding: 8px 450px;
   text-align: center;
   text-decoration: none;
   font-weight: Bold;
@@ -17,6 +16,14 @@
   margin: 8px 4px;
   cursor: pointer;
 }
+
+<style type="text/css">
+		.tg {align :center; width:125%}
+		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:20px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+		.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+		.tg .tg-4eph{background-color:#f9f9f9}
+	</style>
 </style>
 <html>
 
@@ -32,7 +39,7 @@
 
 <body>
 <b>
-<button class="button" >customer relationship management</button>
+<button class="button" >Customer Relationship Management</button>
 </b>
 	<div id="wrapper">
 		<div id="header">
@@ -53,7 +60,7 @@
 		
 			<!--  add our html table here -->
 		
-			<table style="width:100%">
+			<table class = tg >
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>

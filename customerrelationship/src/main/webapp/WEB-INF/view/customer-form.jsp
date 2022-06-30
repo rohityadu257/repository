@@ -5,14 +5,7 @@
 
 <head>
 	<title>Save Customer</title>
-<!--  
-	<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/css/style.css">
 
-	<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/css/add-customer-style.css"> -->
 </head>
 
 <body>
@@ -64,7 +57,7 @@
 		
 		  
 	</div>
-	<a href="customer/list">Back to customer List</a>
+	<a href="list">Back to customer List</a>
 </body>
 
 </html>
