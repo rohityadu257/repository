@@ -3,64 +3,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
- <style>
-.button {
-  background-color: skyblue;
-  border: red;
-  color: red;
-  padding: 8px 450px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: Bold;
-  font-size: 20px;
-  margin: 8px 4px;
-  cursor: pointer;
-}
-
-<style type="text/css">
-		.tg {align :center; width:125%}
-		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
-		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:20px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
-		.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-		.tg .tg-4eph{background-color:#f9f9f9}
-	</style>
-</style>
 <html>
-
+<style>
+.add-button {background-color:skyblue;padding:5px 8px;font-size: 12px;border-radius:6px; margin : 2px 4px; display:block}
+.button1 {  background-color: #4CAF50; color: black;  padding: 10px 470px;  text-align: center; border-color:white; text-decoration: none;
+  font-weight: Bold;  font-size: 20px;  margin: 8px 4px; border-radius:6px; cursor: pointer;}
+		.tg {align :center; width:125px;border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:5px 100px;border-style:solid;border-width:2px;border-color:#ccc;color:#333;background-color:#fff;}
+		.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#4CAF50;}
+		.tg .tg-4eph{background-color:#f9f9f9}
+		
+</style>
 <head>
-	<title>List Customers</title>
-	
-	<!-- reference our style sheet -->
 
-	<!--<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/css/style.css" />-->
-
+<title>List Customers</title>
 
 <body>
 <b>
-<button class="button" >Customer Relationship Management</button>
-</b>
-	<div id="wrapper">
-		<div id="header">
-			<h2>Customer Relationship Manager</h2>
-		</div>
-	</div>
-	
+<button class="button1" >Customer Relationship Management</button>
+</b>	
 	<div id="container">
-	
-		<div id="content">
 		
-			<!-- put new button: Add Customer -->
-		
-			<input type="button" value="Add Customer"
+			<input type="button" value="Add Customer" 
 				   onclick="window.location.href='showFormForAdd'; return false;"
 				   class="add-button"
 			/>
-		
-			<!--  add our html table here -->
-		
-			<table class = tg >
+			<table class = tg style = margin-left:auto;margin-right:auto; width=125px>
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
@@ -89,7 +57,7 @@
 						<td>
 							<!-- display the update link -->
 							<a href="${updateLink}">Update</a>
-							|
+							
 							<a href="${deleteLink}"
 							   onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
 						</td>
@@ -99,8 +67,6 @@
 				</c:forEach>
 						
 			</table>
-				
-		</div>
 	
 	</div>
 	
