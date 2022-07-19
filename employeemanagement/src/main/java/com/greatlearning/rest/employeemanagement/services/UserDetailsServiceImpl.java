@@ -1,23 +1,21 @@
-package com.greatlearning.rohit.student.management.service;
-
-
+package com.greatlearning.rest.employeemanagement.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-import com.greatlearning.rohit.student.management.entity.User;
-import com.greatlearning.rohit.student.management.repository.UserRepository;
-import com.greatlearning.rohit.student.management.security.MyUserDetails;
+import com.greatlearning.rest.employeemanagement.repository.UserRepo;
+import com.greatlearning.rest.employeemanagement.entity.User;
+import com.greatlearning.rest.employeemanagement.repository.UserRepo;
+import com.greatlearning.rest.employeemanagement.security.MyUserDetails;
 
-
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-		
-	
-	
+
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepo userRepository;
 	
 	
 	@Override
@@ -26,11 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("could not find user"+username);
 		}
-		MyUserDetails myUserDetails = new MyUserDetails(user);
+		com.greatlearning.rest.employeemanagement.security.MyUserDetails myUserDetails = new MyUserDetails(user);
 		return new MyUserDetails(user);
 	}
-	
-	
-
-
 }

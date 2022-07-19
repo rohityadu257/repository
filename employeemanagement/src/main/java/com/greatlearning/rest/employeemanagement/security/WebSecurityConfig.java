@@ -1,4 +1,4 @@
-package com.greatlearning.rohit.student.management.security;
+package com.greatlearning.rest.employeemanagement.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.greatlearning.rohit.student.management.service.UserDetailsServiceImpl;
+import com.greatlearning.rest.employeemanagement.services.UserDetailsServiceImpl;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -36,18 +36,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/student/save", "/student/showFormForAdd", "/student/403")
-		//the above urls are accessible with roles USER and ADMIN
-						.hasAnyAuthority("USER", "ADMIN").antMatchers("/student/showFormForUpdate", "/student/delete")
-		//the above urls are accessible with role of ADMIN only
-						.hasAuthority("ADMIN").anyRequest().authenticated().and().formLogin().loginProcessingUrl("/login")
-		//successful login redirects to /student/list URL
-						.successForwardUrl("/student/list").permitAll().and().logout()
-		//logout redirects to /login  URL
-						.logoutSuccessUrl("/login").permitAll().and()
-		//unauthorized access attempt redirects to 403 URL
-						.exceptionHandling().accessDeniedPage("/student/403").and().cors().and().csrf().disable();
-	}
-}
+
+	  @Override
+	    protected void configure(HttpSecurity http) throws Exception {
+	        http.authorizeRequests()
+	        
+	        		.antMatchers("/").permitAll()
+	                .antMatchers("/h2-console/**").permitAll();
+	                http.csrf().disable().headers().frameOptions().disable();
+	        		//.antMatchers("/employee", "/sortedby/{field}", "/getby/{id}")
+	      //the above urls are accessible with roles USER and ADMIN
+	      				//.hasAnyAuthority("USER", "ADMIN").antMatchers("/delete/{id}", "/addnew","/update/{id}")
+	      //the above urls are accessible with role of ADMIN only
+	      			//.hasAuthority("ADMIN").anyRequest().authenticated().and().formLogin().loginProcessingUrl("/login")
+	      //successful login redirects to /student/list URL
+	      			//	.successForwardUrl("/employee").permitAll().and().logout()
+	      //logout redirects to /login  URL
+	      				//.logoutSuccessUrl("/login").permitAll().and()
+	      //unauthorized access attempt redirects to 403 URL
+	      				//.exceptionHandling().accessDeniedPage("/403").and().cors().and().csrf().disable().headers().frameOptions().disable();
+	      	}
+	      
+	       
+	    }
+	
+
