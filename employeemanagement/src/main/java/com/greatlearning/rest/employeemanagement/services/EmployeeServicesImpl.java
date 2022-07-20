@@ -11,7 +11,7 @@ import com.greatlearning.rest.employeemanagement.repository.EmployeeRepository;
 
 @Service
 public class EmployeeServicesImpl implements EmployeeServices {
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
@@ -19,8 +19,6 @@ public class EmployeeServicesImpl implements EmployeeServices {
 	public List<Employee> getAllEmployee() {
 		return this.employeeRepository.findAll();
 	}
-	
-	
 
 	@Override
 	public Employee findById(int id) {
@@ -28,8 +26,8 @@ public class EmployeeServicesImpl implements EmployeeServices {
 	}
 
 	@Override
-	public void save (Employee employee) {
-	employeeRepository.save(employee);
+	public void save(Employee employee) {
+		employeeRepository.save(employee);
 
 	}
 
@@ -38,19 +36,19 @@ public class EmployeeServicesImpl implements EmployeeServices {
 		employeeRepository.deleteById(id);
 
 	}
+
 	@Override
-	public void updateEmployee(Employee emp,int id) {
-		if(id == emp.getId()) {
+	public void updateEmployee(Employee emp, int id) {
+		if (id == emp.getId()) {
 			employeeRepository.save(emp);
 		}
-		
 
 	}
 
 	@Override
 	public void addEmployee(Employee employee) {
 		employeeRepository.save(employee);
-		
+
 	}
 
 	@Override
@@ -59,13 +57,9 @@ public class EmployeeServicesImpl implements EmployeeServices {
 		return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, field));
 	}
 
-	
-	
-	
-
-	
-
-	
-
-	
+	@Override
+	public List<Employee> findByFirstname(String firstname) {
+		List<Employee> employee = employeeRepository.findAll(firstname);
+		return employee;
+	}
 }

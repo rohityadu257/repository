@@ -2,9 +2,11 @@ package com.greatlearning.rest.employeemanagement.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.greatlearning.rest.employeemanagement.services.UserDetailsServiceImpl;
 
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new UserDetailsServiceImpl();
@@ -36,28 +40,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
 
-	  @Override
-	    protected void configure(HttpSecurity http) throws Exception {
-	        http.authorizeRequests()
-	        
-	        		.antMatchers("/").permitAll()
-	                .antMatchers("/h2-console/**").permitAll();
-	                http.csrf().disable().headers().frameOptions().disable();
-	        		//.antMatchers("/employee", "/sortedby/{field}", "/getby/{id}")
-	      //the above urls are accessible with roles USER and ADMIN
-	      				//.hasAnyAuthority("USER", "ADMIN").antMatchers("/delete/{id}", "/addnew","/update/{id}")
-	      //the above urls are accessible with role of ADMIN only
-	      			//.hasAuthority("ADMIN").anyRequest().authenticated().and().formLogin().loginProcessingUrl("/login")
-	      //successful login redirects to /student/list URL
-	      			//	.successForwardUrl("/employee").permitAll().and().logout()
-	      //logout redirects to /login  URL
-	      				//.logoutSuccessUrl("/login").permitAll().and()
-	      //unauthorized access attempt redirects to 403 URL
-	      				//.exceptionHandling().accessDeniedPage("/403").and().cors().and().csrf().disable().headers().frameOptions().disable();
-	      	}
-	      
-	       
-	    }
-	
+		http.httpBasic().and().authorizeRequests().antMatchers("/h2-console/**").permitAll().and().csrf().disable()
+				.headers().frameOptions().disable()
 
+				.and().authorizeRequests()
+				.antMatchers(HttpMethod.GET, "/api/allemployee/**", "/api/getemployeebyfirstname/**",
+						"/api/sortedby/{field}")
+				.hasAnyAuthority("USER", "ADMIN").antMatchers(HttpMethod.GET, "/api/getuser/**", "/api/getrole/**")
+				.hasAnyAuthority("ADMIN").antMatchers(HttpMethod.POST, "/api/addnewemployee", "/api/updateemployee/**")
+				.hasAnyAuthority("ADMIN")
+				.antMatchers(HttpMethod.POST, "/api/addrole", "/api/adduser", "/api/assignrole/{userid}/{roleid}")
+				.hasAnyAuthority("ADMIN").antMatchers(HttpMethod.DELETE, "/api/deleteemployee/**")
+				.hasAnyAuthority("ADMIN").anyRequest().authenticated().and().exceptionHandling()
+				.accessDeniedPage("/api/403");
+
+	}
+
+}

@@ -9,19 +9,17 @@ import com.greatlearning.rest.employeemanagement.repository.UserRepo;
 
 @Service
 public class UserService {
-	
-	
+
 	@Autowired
 	public UserRepo userRepo;
-	
+
 	@Autowired
 	public BCryptPasswordEncoder passwordEncoder;
-	
-	
-	public void save (User user) {
-		
+
+	public void save(User user) {
+
 		userRepo.save(user);
+
 	}
-	
 
 }

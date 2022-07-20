@@ -12,33 +12,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Entity
-@Table (name = "Employeetbl")
+@Table(name = "Employeetbl")
 public class Employee {
-	
+
 	@Id
 	@Column
-	private int id ;
+	private int id;
 	@Column
 	private String firstname;
 	@Column
 	private String lastname;
 	@Column
 	private String email;
-	
 
 	public Employee(String firstname, String lastname, String email) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
-	
-	}
 
+	}
 
 }

@@ -12,21 +12,19 @@ import com.greatlearning.rest.employeemanagement.repository.UserRepo;
 
 @Service
 public class RoleService {
-	
+
 	@Autowired
 	public RoleRepository roleRepository;
 	@Autowired
 	public UserRepo userRepo;
-	
-	public void save (Role role) {
+
+	public void save(Role role) {
 		roleRepository.save(role);
 	}
-	
-	public void assignUserRole(Integer Userid,Integer rolesid) {
+
+	public void assignUserRole(Integer Userid, Integer rolesid) {
 		User user = userRepo.findById(Userid).orElse(null);
-		Role role =roleRepository.findById(rolesid).orElse(null);
-		
-		
+		Role role = roleRepository.findById(rolesid).orElse(null);
 		List<Role> userRoles = user.getRoles();
 		userRoles.add(role);
 		user.setRoles(userRoles);

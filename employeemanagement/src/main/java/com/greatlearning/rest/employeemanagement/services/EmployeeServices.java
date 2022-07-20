@@ -2,12 +2,10 @@ package com.greatlearning.rest.employeemanagement.services;
 
 import java.util.List;
 
-
 import com.greatlearning.rest.employeemanagement.entity.Employee;
 
-
 public interface EmployeeServices {
-	
+
 	public Employee findById(int id);
 
 	public void save(Employee employee);
@@ -22,8 +20,6 @@ public interface EmployeeServices {
 
 	public List<Employee> findAll(String field);
 
+	public List<Employee> findByFirstname(String firstName);
 
-
-
-	
 }

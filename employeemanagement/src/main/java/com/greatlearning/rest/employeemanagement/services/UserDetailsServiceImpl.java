@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.greatlearning.rest.employeemanagement.repository.UserRepo;
 import com.greatlearning.rest.employeemanagement.entity.User;
 import com.greatlearning.rest.employeemanagement.repository.UserRepo;
 import com.greatlearning.rest.employeemanagement.security.MyUserDetails;
@@ -15,16 +15,19 @@ import com.greatlearning.rest.employeemanagement.security.MyUserDetails;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private UserRepo userRepository;
-	
-	
+	public UserRepo userRepository;
+
+	@Autowired
+	public BCryptPasswordEncoder passwordEncoder;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username);
+		User user = userRepository.getUserByUsername(username);
 		if (user == null) {
-			throw new UsernameNotFoundException("could not find user"+username);
+			throw new UsernameNotFoundException("could not find user" + username);
 		}
-		com.greatlearning.rest.employeemanagement.security.MyUserDetails myUserDetails = new MyUserDetails(user);
+		MyUserDetails myUserDetails = new MyUserDetails(user);
 		return new MyUserDetails(user);
 	}
+
 }
