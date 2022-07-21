@@ -12,4 +12,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	@Query("select u from Employee u where u.firstname =:firstname")
 	List<Employee> findAll(String firstname);
 
+
+
 }

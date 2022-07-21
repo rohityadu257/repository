@@ -48,15 +48,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.and().authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/api/allemployee/**", "/api/getemployeebyfirstname/**",
-						"/api/sortedby/{field}")
-				.hasAnyAuthority("USER", "ADMIN").antMatchers(HttpMethod.GET, "/api/getuser/**", "/api/getrole/**")
-				.hasAnyAuthority("ADMIN").antMatchers(HttpMethod.POST, "/api/addnewemployee", "/api/updateemployee/**")
-				.hasAnyAuthority("ADMIN")
+						"/Searchemployeeby/{field}/ASC","/Searchemployeeby/{field}/DESC")
+				.hasAnyAuthority("ROLE_USER", "ROLE_ADMIN").antMatchers(HttpMethod.GET, "/api/getuser/**", "/api/getrole/**")
+				.hasAnyAuthority("ROLE_ADMIN").antMatchers(HttpMethod.POST, "/api/addnewemployee", "/api/updateemployee/**")
+				.hasAnyAuthority("ROLE_ADMIN")
 				.antMatchers(HttpMethod.POST, "/api/addrole", "/api/adduser", "/api/assignrole/{userid}/{roleid}")
-				.hasAnyAuthority("ADMIN").antMatchers(HttpMethod.DELETE, "/api/deleteemployee/**")
-				.hasAnyAuthority("ADMIN").anyRequest().authenticated().and().exceptionHandling()
+				.hasAnyAuthority("ROLE_ADMIN").antMatchers(HttpMethod.DELETE, "/api/deleteemployee/**")
+				.hasAnyAuthority("ROLE_ADMIN").anyRequest().authenticated().and().exceptionHandling()
 				.accessDeniedPage("/api/403");
-
 	}
 
 }

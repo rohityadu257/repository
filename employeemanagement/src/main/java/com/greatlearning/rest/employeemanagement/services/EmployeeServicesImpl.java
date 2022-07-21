@@ -2,12 +2,16 @@ package com.greatlearning.rest.employeemanagement.services;
 
 import java.util.List;
 
+import javax.persistence.OrderBy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.greatlearning.rest.employeemanagement.entity.Employee;
 import com.greatlearning.rest.employeemanagement.repository.EmployeeRepository;
+
+import lombok.var;
 
 @Service
 public class EmployeeServicesImpl implements EmployeeServices {
@@ -52,9 +56,9 @@ public class EmployeeServicesImpl implements EmployeeServices {
 	}
 
 	@Override
-	public List<Employee> findAll(String field) {
+	public List<Employee> findAllempASC(String field) {
 		// TODO Auto-generated method stub
-		return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, field));
+		return employeeRepository.findAll(Sort.by(Sort.Direction.ASC,field));
 	}
 
 	@Override
@@ -62,4 +66,14 @@ public class EmployeeServicesImpl implements EmployeeServices {
 		List<Employee> employee = employeeRepository.findAll(firstname);
 		return employee;
 	}
+
+	
+
+	@Override
+	public List<Employee> findAllempDesc(String field) {
+		// TODO Auto-generated method stub
+		return employeeRepository.findAll(Sort.by(Sort.Direction.DESC,field));
+	}
+	
+	
 }

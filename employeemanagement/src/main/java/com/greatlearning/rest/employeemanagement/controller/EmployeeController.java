@@ -30,13 +30,19 @@ public class EmployeeController {
 
 	}
 
-	@GetMapping("/sortedby/{field}")
-	public List<Employee> getAllEmployee(@PathVariable String field) {
+	@GetMapping("/Searchemployeeby/{field}/ASC")
+	public List<Employee> getAllEmployeeASC(@PathVariable String field) {
 
-		return employeeServices.findAll(field);
+		return employeeServices.findAllempASC(field);
 
 	}
 
+	@GetMapping("/Searchemployeeby/{field}/DESC")
+	public List<Employee> getAllEmployeeDESC(@PathVariable String field) {
+
+		return employeeServices.findAllempDesc(field);
+
+	}
 	@GetMapping("/allemployee/{id}")
 	public Employee findById(@PathVariable int id) {
 		return employeeServices.findById(id);
@@ -61,7 +67,7 @@ public class EmployeeController {
 		return emp;
 	}
 
-	@GetMapping("/getemployeebyfirstname/{firstname}")
+	@GetMapping("/searchbyfirstname/{firstname}")
 	public List<Employee> findByFirstname(@PathVariable String firstname) {
 		return employeeServices.findByFirstname(firstname);
 	}
