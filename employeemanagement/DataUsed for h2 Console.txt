@@ -1,0 +1,20 @@
+
+insert into EMPLOYEETBL (ID,EMAIL,FIRSTNAME,LASTNAME) Values(1,'rohit@gmail.com','Rohit','kumar');
+insert into EMPLOYEETBL (ID,EMAIL,FIRSTNAME,LASTNAME) Values(2,'rahul@gmail.com','Rahul','singh');
+insert into EMPLOYEETBL (ID,EMAIL,FIRSTNAME,LASTNAME) Values(3,'saket@gmail.com','saket','ghiria');
+insert into EMPLOYEETBL (ID,EMAIL,FIRSTNAME,LASTNAME) Values(4,'raj@gmail.com','raj','kamal');
+insert into EMPLOYEETBL (ID,EMAIL,FIRSTNAME,LASTNAME) Values(5,'kumar@gmail.com','kumar','Gaurav');
+insert into EMPLOYEETBL (ID,EMAIL,FIRSTNAME,LASTNAME) Values(6,'Ahmed@gmail.com','Ahmed','Khan');
+
+
+insert into USER(ID,PASSWORD,USERNAME) Values(1,'$2a$12$KE3mdZ4lVi/71axk7SgxvOn2pjXlTssLfy8tK7bf7PPIhNhBx4pkK','USER1');
+insert into USER(ID,PASSWORD,USERNAME)Values(2,'$2a$12$KE3mdZ4lVi/71axk7SgxvOn2pjXlTssLfy8tK7bf7PPIhNhBx4pkK','USER2');
+pwd:admin
+
+insert into ROLES(ID,NAME)Values(1,'ROLE_USER');
+insert into ROLES(ID,NAME)Values(2,'ROLE_ADMIN');
+
+
+insert into USER_ROLES(USER_ID,ROLE_ID)Values(1,1);
+insert into USER_ROLES(USER_ID,ROLE_ID)Values(2,1);
+insert into USER_ROLES(USER_ID,ROLE_ID)Values(2,2);
